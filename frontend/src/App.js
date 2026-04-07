@@ -8,22 +8,22 @@ const CSS = `
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #f4f6fa;
+    --bg: #f4f6fb;
     --surface: #ffffff;
     --surface2: #f0f3f8;
     --surface3: #e4e9f2;
     --border: rgba(100,116,139,0.15);
-    --border-bright: rgba(37,99,235,0.35);
-    --cyan: #2563eb;
-    --cyan-dim: rgba(37,99,235,0.08);
-    --cyan-glow: rgba(37,99,235,0.25);
-    --green: #16a34a;
-    --orange: #ea580c;
-    --pink: #db2777;
-    --purple: #7c3aed;
-    --text: #0f172a;
-    --text-dim: #64748b;
-    --text-mid: #475569;
+    --border-bright: rgba(56,189,248,0.4);
+    --cyan: #0ea5e9;
+    --cyan-dim: rgba(14,165,233,0.1);
+    --cyan-glow: rgba(14,165,233,0.3);
+    --green: #10b981;
+    --orange: #f97316;
+    --pink: #ec4899;
+    --purple: #8b5cf6;
+    --text: #1e293b;
+    --text-dim: #94a3b8;
+    --text-mid: #64748b;
     --font-display: 'Syne', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --radius: 14px;
@@ -36,16 +36,17 @@ const CSS = `
 
   /* SIDEBAR */
   .sidebar {
-    width: 72px;
+    width: 82px;
     background: var(--surface);
     border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    gap: 8px;
+    gap: 4px;
     flex-shrink: 0;
     z-index: 10;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.04);
   }
   .sidebar-logo {
     width: 40px; height: 40px;
@@ -54,22 +55,32 @@ const CSS = `
     display: flex; align-items: center; justify-content: center;
     font-family: var(--font-display);
     font-weight: 800; font-size: 16px;
-    color: #080c14;
+    color: #fff;
     margin-bottom: 20px;
-    box-shadow: 0 0 20px var(--cyan-glow);
+    box-shadow: 0 4px 12px var(--cyan-glow);
   }
   .sidebar-btn {
-    width: 44px; height: 44px;
-    border-radius: 12px;
+    width: 64px;
+    border-radius: 10px;
     border: none;
     background: transparent;
     color: var(--text-dim);
     cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px 4px;
+    font-size: 9px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     transition: all 0.2s;
     position: relative;
   }
+  .sidebar-btn svg { width: 18px; height: 18px; stroke-width: 1.8; }
   .sidebar-btn:hover, .sidebar-btn.active {
     background: var(--cyan-dim);
     color: var(--cyan);
@@ -81,11 +92,10 @@ const CSS = `
     width: 3px; height: 20px;
     background: var(--cyan);
     border-radius: 0 2px 2px 0;
-    box-shadow: 0 0 8px var(--cyan);
   }
   .sidebar-badge {
-    position: absolute; top: 6px; right: 6px;
-    width: 8px; height: 8px;
+    position: absolute; top: 6px; right: 8px;
+    width: 7px; height: 7px;
     background: var(--pink);
     border-radius: 50%;
     border: 2px solid var(--surface);
@@ -217,6 +227,7 @@ const CSS = `
     align-items: center;
     gap: 12px;
     background: var(--surface);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   }
   .chat-header-avatar {
     width: 40px; height: 40px; border-radius: 50%;
@@ -226,7 +237,7 @@ const CSS = `
   .chat-header-info { flex: 1; }
   .chat-header-name {
     font-family: var(--font-display);
-    font-size: 15px; font-weight: 700;
+    font-size: 15px; font-weight: 700; color: var(--text);
   }
   .chat-header-sub { font-size: 11px; color: var(--text-dim); display: flex; align-items: center; gap: 6px; }
   .online-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
@@ -235,7 +246,7 @@ const CSS = `
   .icon-btn {
     width: 36px; height: 36px; border-radius: var(--radius-sm);
     background: var(--surface2); border: 1px solid var(--border);
-    color: var(--text-dim); cursor: pointer;
+    color: var(--text-mid); cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     font-size: 14px; transition: all 0.2s;
   }
@@ -271,14 +282,15 @@ const CSS = `
     position: relative;
   }
   .msg-row.user .msg-bubble {
-    background: var(--surface2);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-bottom-left-radius: 4px;
     color: var(--text);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   }
   .msg-row.agent .msg-bubble {
-    background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(167,139,250,0.15));
-    border: 1px solid var(--border-bright);
+    background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(139,92,246,0.1));
+    border: 1px solid rgba(14,165,233,0.25);
     border-bottom-right-radius: 4px;
     color: var(--text);
   }
@@ -296,11 +308,12 @@ const CSS = `
   .typing-indicator {
     display: flex; gap: 4px; align-items: center;
     padding: 12px 16px;
-    background: var(--surface2);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
     border-bottom-left-radius: 4px;
     width: fit-content;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   }
   .typing-dot {
     width: 6px; height: 6px; border-radius: 50%;
@@ -346,6 +359,7 @@ const CSS = `
     padding: 12px 16px;
     display: flex; gap: 8px; align-items: flex-end;
     background: var(--surface);
+    border-top: 1px solid var(--border);
   }
   .input-wrap {
     flex: 1;
@@ -367,13 +381,13 @@ const CSS = `
   .send-btn {
     width: 40px; height: 40px; border-radius: 10px;
     background: linear-gradient(135deg, var(--cyan), var(--purple));
-    border: none; color: #080c14;
+    border: none; color: #fff;
     cursor: pointer; font-size: 16px;
     display: flex; align-items: center; justify-content: center;
     transition: all 0.2s; flex-shrink: 0;
     font-weight: 700;
   }
-  .send-btn:hover { transform: scale(1.05); box-shadow: 0 0 16px var(--cyan-glow); }
+  .send-btn:hover { transform: scale(1.05); box-shadow: 0 4px 14px var(--cyan-glow); }
 
   /* RIGHT PANEL */
   .right-panel {
@@ -414,7 +428,7 @@ const CSS = `
     display: flex; align-items: center; justify-content: center;
     font-size: 16px; font-weight: 700;
   }
-  .profile-name { font-size: 14px; font-weight: 600; }
+  .profile-name { font-size: 14px; font-weight: 600; color: var(--text); }
   .profile-tier {
     display: inline-flex; align-items: center; gap: 3px;
     font-size: 10px; font-weight: 600;
@@ -424,7 +438,8 @@ const CSS = `
 
   .profile-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .stat-box {
-    background: var(--surface3);
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     padding: 8px;
     text-align: center;
@@ -463,16 +478,16 @@ const CSS = `
   }
   .studio-context { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
   .ctx-select {
-    background: var(--surface3); border: 1px solid var(--border);
+    background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--radius-sm); padding: 6px 10px;
     color: var(--text); font-family: var(--font-body);
     font-size: 11px; outline: none; cursor: pointer;
   }
-  .ctx-select option { background: var(--surface2); }
+  .ctx-select option { background: var(--surface); }
   .generate-btn {
     width: 100%; padding: 8px;
-    background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(167,139,250,0.2));
-    border: 1px solid var(--border-bright);
+    background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(139,92,246,0.12));
+    border: 1px solid rgba(14,165,233,0.3);
     border-radius: var(--radius-sm);
     color: var(--cyan); font-family: var(--font-body);
     font-size: 12px; font-weight: 600;
@@ -483,7 +498,7 @@ const CSS = `
   .generated-msg {
     margin-top: 8px;
     padding: 10px;
-    background: var(--surface3);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     font-size: 11px; color: var(--text-mid);
@@ -495,7 +510,7 @@ const CSS = `
     margin-top: 6px; width: 100%; padding: 6px;
     background: var(--cyan);
     border: none; border-radius: var(--radius-sm);
-    color: #080c14; font-family: var(--font-body);
+    color: #fff; font-family: var(--font-body);
     font-size: 11px; font-weight: 700;
     cursor: pointer; transition: all 0.2s;
   }
@@ -535,7 +550,7 @@ const CSS = `
     border-radius: var(--radius-sm);
   }
   .consent-info { flex: 1; }
-  .consent-name { font-size: 12px; font-weight: 500; }
+  .consent-name { font-size: 12px; font-weight: 500; color: var(--text); }
   .consent-desc { font-size: 10px; color: var(--text-dim); margin-top: 1px; }
   .toggle {
     width: 32px; height: 18px;
@@ -550,6 +565,7 @@ const CSS = `
     width: 12px; height: 12px;
     background: white; border-radius: 50%;
     top: 3px; transition: left 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   }
   .toggle.on .toggle-knob { left: 17px; }
   .toggle.off .toggle-knob { left: 3px; }
@@ -557,7 +573,7 @@ const CSS = `
   /* BROADCAST MODAL */
   .modal-overlay {
     position: fixed; inset: 0;
-    background: rgba(8,12,20,0.85);
+    background: rgba(30,41,59,0.4);
     backdrop-filter: blur(4px);
     z-index: 100;
     display: flex; align-items: center; justify-content: center;
@@ -565,21 +581,21 @@ const CSS = `
   }
   .modal {
     background: var(--surface);
-    border: 1px solid var(--border-bright);
+    border: 1px solid var(--border);
     border-radius: 20px;
     width: 500px;
     max-width: 90vw;
     max-height: 85vh;
     overflow-y: auto;
     padding: 24px;
-    box-shadow: 0 0 60px rgba(56,189,248,0.15);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
     animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   @keyframes modalIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
   .modal-title {
     font-family: var(--font-display);
     font-size: 20px; font-weight: 800;
-    margin-bottom: 4px;
+    margin-bottom: 4px; color: var(--text);
   }
   .modal-sub { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
   .modal-close {
@@ -639,11 +655,11 @@ const CSS = `
     padding: 10px 24px;
     background: linear-gradient(135deg, var(--cyan), var(--purple));
     border: none; border-radius: var(--radius-sm);
-    color: #080c14; font-family: var(--font-display);
+    color: #fff; font-family: var(--font-display);
     font-size: 13px; font-weight: 700;
     cursor: pointer; transition: all 0.2s;
   }
-  .launch-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px var(--cyan-glow); }
+  .launch-btn:hover { transform: scale(1.02); box-shadow: 0 4px 16px var(--cyan-glow); }
 
   /* TOP NAV */
   .topnav {
@@ -653,6 +669,7 @@ const CSS = `
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     gap: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   }
   .topnav-brand {
     font-family: var(--font-display);
@@ -668,18 +685,18 @@ const CSS = `
     padding: 7px 14px;
     background: linear-gradient(135deg, var(--cyan), var(--purple));
     border: none; border-radius: 8px;
-    color: #080c14; font-family: var(--font-display);
+    color: #fff; font-family: var(--font-display);
     font-size: 12px; font-weight: 700;
     cursor: pointer; transition: all 0.2s;
     display: flex; align-items: center; gap: 5px;
   }
-  .broadcast-btn:hover { box-shadow: 0 0 16px var(--cyan-glow); }
+  .broadcast-btn:hover { box-shadow: 0 4px 16px var(--cyan-glow); }
 
   .live-badge {
     display: flex; align-items: center; gap: 4px;
     padding: 4px 10px;
-    background: rgba(52, 211, 153, 0.1);
-    border: 1px solid rgba(52, 211, 153, 0.3);
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.25);
     border-radius: 20px;
     font-size: 10px; font-weight: 600; color: var(--green);
     letter-spacing: 0.05em;
@@ -690,10 +707,98 @@ const CSS = `
   .spinning { animation: spin 1.5s linear infinite; }
   @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-  @keyframes glow-pulse {
-    0%, 100% { box-shadow: 0 0 10px var(--cyan-glow); }
-    50% { box-shadow: 0 0 25px var(--cyan-glow), 0 0 50px rgba(56,189,248,0.15); }
+  /* SIDEBAR PAGE PANELS */
+  .sidebar-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    overflow-y: auto;
+    padding: 32px;
   }
+  .sidebar-page-title {
+    font-family: var(--font-display);
+    font-size: 22px; font-weight: 800;
+    color: var(--text); margin-bottom: 4px;
+  }
+  .sidebar-page-sub {
+    font-size: 13px; color: var(--text-dim); margin-bottom: 28px;
+  }
+  .settings-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .settings-card-title {
+    font-family: var(--font-display);
+    font-size: 13px; font-weight: 700;
+    color: var(--text); margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .settings-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .settings-row:last-child { border-bottom: none; }
+  .settings-row-info { flex: 1; }
+  .settings-row-label { font-size: 13px; font-weight: 500; color: var(--text); }
+  .settings-row-desc { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+  .settings-input {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 7px 12px;
+    color: var(--text); font-family: var(--font-body);
+    font-size: 12px; outline: none; width: 180px;
+  }
+  .settings-input:focus { border-color: var(--cyan); }
+  .settings-select {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 7px 12px;
+    color: var(--text); font-family: var(--font-body);
+    font-size: 12px; outline: none; cursor: pointer;
+  }
+  .save-btn {
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--cyan), var(--purple));
+    border: none; border-radius: var(--radius-sm);
+    color: #fff; font-family: var(--font-display);
+    font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; margin-top: 8px;
+  }
+  .save-btn:hover { box-shadow: 0 4px 14px var(--cyan-glow); }
+  .profile-avatar-big {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), var(--purple));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 800; color: #fff;
+    margin-bottom: 12px;
+  }
+  .profile-page-top {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 28px; text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .profile-page-name { font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--text); }
+  .profile-page-role { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+  .danger-btn {
+    padding: 8px 16px;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.25);
+    border-radius: var(--radius-sm);
+    color: #ef4444; font-family: var(--font-body);
+    font-size: 12px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .danger-btn:hover { background: rgba(239,68,68,0.15); }
 `;
 
 // ─── DATA ───────────────────────────────────────────────────────────────────
@@ -703,8 +808,8 @@ const CONVERSATIONS = [
     id: 1,
     name: "Priya Sharma",
     initials: "PS",
-    color: "#f472b6",
-    bg: "rgba(244,114,182,0.15)",
+    color: "#ec4899",
+    bg: "rgba(236,72,153,0.12)",
     platform: "whatsapp",
     platformIcon: "💬",
     platformColor: "#25d366",
@@ -714,8 +819,8 @@ const CONVERSATIONS = [
     unread: true,
     score: 87,
     tier: "Gold",
-    tierColor: "#fbbf24",
-    tierBg: "rgba(251,191,36,0.15)",
+    tierColor: "#d97706",
+    tierBg: "rgba(251,191,36,0.12)",
     ltv: "₹24,800",
     orders: 12,
     intent: 87,
@@ -725,8 +830,8 @@ const CONVERSATIONS = [
     id: 2,
     name: "Rohan Mehta",
     initials: "RM",
-    color: "#38bdf8",
-    bg: "rgba(56,189,248,0.15)",
+    color: "#0ea5e9",
+    bg: "rgba(14,165,233,0.12)",
     platform: "instagram",
     platformIcon: "📸",
     platformColor: "#e1306c",
@@ -736,8 +841,8 @@ const CONVERSATIONS = [
     unread: true,
     score: 62,
     tier: "Silver",
-    tierColor: "#94a3b8",
-    tierBg: "rgba(148,163,184,0.15)",
+    tierColor: "#64748b",
+    tierBg: "rgba(148,163,184,0.12)",
     ltv: "₹9,200",
     orders: 5,
     intent: 62,
@@ -747,19 +852,19 @@ const CONVERSATIONS = [
     id: 3,
     name: "Anita Krishnan",
     initials: "AK",
-    color: "#34d399",
-    bg: "rgba(52,211,153,0.15)",
+    color: "#10b981",
+    bg: "rgba(16,185,129,0.12)",
     platform: "sms",
     platformIcon: "✉️",
-    platformColor: "#94a3b8",
+    platformColor: "#64748b",
     platformBg: "rgba(148,163,184,0.1)",
     preview: "Order #2847 — when does it arrive?",
     time: "22m",
     unread: false,
     score: 45,
     tier: "New",
-    tierColor: "#a78bfa",
-    tierBg: "rgba(167,139,250,0.15)",
+    tierColor: "#8b5cf6",
+    tierBg: "rgba(139,92,246,0.12)",
     ltv: "₹3,100",
     orders: 1,
     intent: 45,
@@ -769,8 +874,8 @@ const CONVERSATIONS = [
     id: 4,
     name: "Kiran Nair",
     initials: "KN",
-    color: "#fb923c",
-    bg: "rgba(251,146,60,0.15)",
+    color: "#f97316",
+    bg: "rgba(249,115,22,0.12)",
     platform: "whatsapp",
     platformIcon: "💬",
     platformColor: "#25d366",
@@ -780,8 +885,8 @@ const CONVERSATIONS = [
     unread: false,
     score: 78,
     tier: "Gold",
-    tierColor: "#fbbf24",
-    tierBg: "rgba(251,191,36,0.15)",
+    tierColor: "#d97706",
+    tierBg: "rgba(251,191,36,0.12)",
     ltv: "₹18,400",
     orders: 9,
     intent: 78,
@@ -839,38 +944,54 @@ const SIGNALS_BY_ID = {
 };
 
 const AI_SUGGESTIONS_BY_ID = {
-  1: [
-    "Offer loyalty discount 🎁",
-    "Check size availability",
-    "Share style guide",
-    "Apply flash offer ⚡",
-  ],
-  2: [
-    "Confirm stock availability",
-    "Suggest similar styles",
-    "Share lookbook link",
-    "Offer try-at-home",
-  ],
-  3: [
-    "Share tracking link 📦",
-    "Estimate delivery time",
-    "Offer post-delivery review",
-  ],
-  4: [
-    "Send rescue coupon 🎫",
-    "Highlight urgency ⏰",
-    "Suggest bundle deal",
-    "Offer EMI option",
-  ],
+  1: ["Offer loyalty discount", "Check size availability", "Share style guide", "Apply flash offer"],
+  2: ["Confirm stock availability", "Suggest similar styles", "Share lookbook link", "Offer try-at-home"],
+  3: ["Share tracking link", "Estimate delivery time", "Offer post-delivery review"],
+  4: ["Send rescue coupon", "Highlight urgency", "Suggest bundle deal", "Offer EMI option"],
 };
 
 const GENERATED_MESSAGES = {
-  "Cart Recovery": "Hey {name}! 🛒 You left something behind — your {product} is almost gone! Use code SAVE10 for 10% off in the next 2 hours. Tap to complete: nexachat.io/cart",
-  "Loyalty Reward": "Hi {name}! 🌟 Your {tier} loyalty reward is ready — enjoy exclusive 15% off your next order + free shipping! Valid this weekend only.",
-  "Back in Stock": "Great news, {name}! ✨ The {product} you wanted is back in stock. Sizes are filling up fast — grab yours now before it's gone!",
-  "Reengagement": "We miss you, {name}! 👋 It's been a while. Here's a special 'welcome back' surprise just for you — 20% off storewide. Let's shop! 🛍️",
-  "Flash Sale": "⚡ Flash Sale LIVE! {name}, 40% off everything for the next 3 hours. Our top picks based on your style: running shoes & joggers. Shop now!",
+  "Cart Recovery": "Hey {name}! You left something behind — your {product} is almost gone! Use code SAVE10 for 10% off in the next 2 hours. Tap to complete: nexachat.io/cart",
+  "Loyalty Reward": "Hi {name}! Your {tier} loyalty reward is ready — enjoy exclusive 15% off your next order + free shipping! Valid this weekend only.",
+  "Back in Stock": "Great news, {name}! The {product} you wanted is back in stock. Sizes are filling up fast — grab yours now before it's gone!",
+  "Reengagement": "We miss you, {name}! It's been a while. Here's a special 'welcome back' surprise just for you — 20% off storewide. Let's shop!",
+  "Flash Sale": "Flash Sale LIVE! {name}, 40% off everything for the next 3 hours. Our top picks based on your style: running shoes & joggers. Shop now!",
 };
+
+// ─── SVG ICONS ───────────────────────────────────────────────────────────────
+
+const IconChat = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+const IconAnalytics = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+const IconCampaigns = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+const IconPrivacy = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+const IconSettings = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+const IconProfile = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
 // ─── COMPONENTS ──────────────────────────────────────────────────────────────
 
@@ -888,14 +1009,7 @@ function SparkLine({ color }) {
   return (
     <div className="sparkline">
       {vals.map((v, i) => (
-        <div
-          key={i}
-          className="spark-bar"
-          style={{
-            height: `${(v / max) * 100}%`,
-            background: color || "var(--cyan)",
-          }}
-        />
+        <div key={i} className="spark-bar" style={{ height: `${(v / max) * 100}%`, background: color || "var(--cyan)" }} />
       ))}
     </div>
   );
@@ -916,14 +1030,10 @@ function BroadcastModal({ onClose }) {
   const templates = Object.keys(GENERATED_MESSAGES);
 
   const toggleAudience = (a) => {
-    setSelectedAudience(prev =>
-      prev.includes(a) ? prev.filter(x => x !== a) : [...prev, a]
-    );
+    setSelectedAudience(prev => prev.includes(a) ? prev.filter(x => x !== a) : [...prev, a]);
   };
   const togglePlatform = (p) => {
-    setSelectedPlatforms(prev =>
-      prev.includes(p) ? prev.filter(x => x !== p) : [...prev, p]
-    );
+    setSelectedPlatforms(prev => prev.includes(p) ? prev.filter(x => x !== p) : [...prev, p]);
   };
 
   const reach = selectedAudience.length * 1240 + selectedPlatforms.length * 300;
@@ -954,28 +1064,20 @@ function BroadcastModal({ onClose }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>✕</button>
-        <div className="modal-title">📡 Smart Broadcast</div>
+        <div className="modal-title">Smart Broadcast</div>
         <div className="modal-sub">Send AI-personalised messages to segmented audiences</div>
 
         <div className="modal-label">Target Audience</div>
         <div className="audience-chips">
           {audiences.map(a => (
-            <div
-              key={a}
-              className={`audience-chip ${selectedAudience.includes(a) ? "selected" : ""}`}
-              onClick={() => toggleAudience(a)}
-            >{a}</div>
+            <div key={a} className={`audience-chip ${selectedAudience.includes(a) ? "selected" : ""}`} onClick={() => toggleAudience(a)}>{a}</div>
           ))}
         </div>
 
         <div className="modal-label">Platforms</div>
         <div className="platform-row">
           {platforms.map(p => (
-            <button
-              key={p.id}
-              className={`platform-tile ${selectedPlatforms.includes(p.id) ? "selected" : ""}`}
-              onClick={() => togglePlatform(p.id)}
-            >
+            <button key={p.id} className={`platform-tile ${selectedPlatforms.includes(p.id) ? "selected" : ""}`} onClick={() => togglePlatform(p.id)}>
               <span className="pt-icon">{p.icon}</span>
               {p.label}
             </button>
@@ -983,26 +1085,300 @@ function BroadcastModal({ onClose }) {
         </div>
 
         <div className="modal-label">Message Template</div>
-        <select
-          className="ctx-select"
-          value={template}
-          onChange={e => setTemplate(e.target.value)}
-          style={{ width: "100%", marginBottom: 10 }}
-        >
+        <select className="ctx-select" value={template} onChange={e => setTemplate(e.target.value)} style={{ width: "100%", marginBottom: 10 }}>
           {templates.map(t => <option key={t}>{t}</option>)}
         </select>
 
-        <textarea
-          className="broadcast-textarea"
-          value={GENERATED_MESSAGES[template]}
-          readOnly
-        />
+        <textarea className="broadcast-textarea" value={GENERATED_MESSAGES[template]} readOnly />
 
         <div className="broadcast-footer">
           <div className="reach-count">Est. reach: <span>{reach.toLocaleString()}</span> users</div>
-          <button className="launch-btn" onClick={() => setLaunched(true)}>🚀 Launch Campaign</button>
+          <button className="launch-btn" onClick={() => setLaunched(true)}>Launch Campaign</button>
         </div>
       </div>
+    </div>
+  );
+}
+
+// ─── SIDEBAR PAGES ────────────────────────────────────────────────────────────
+
+function ProfilePage() {
+  const [name, setName] = useState("Nexachat Admin");
+  const [email, setEmail] = useState("admin@nexachat.io");
+  const [phone, setPhone] = useState("+91 98765 43210");
+  const [saved, setSaved] = useState(false);
+
+  const handleSave = () => {
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  };
+
+  return (
+    <div className="sidebar-page">
+      <div className="sidebar-page-title">My Profile</div>
+      <div className="sidebar-page-sub">Manage your personal information and account details</div>
+
+      <div className="profile-page-top">
+        <div className="profile-avatar-big">N</div>
+        <div className="profile-page-name">{name}</div>
+        <div className="profile-page-role">Admin · NexaChat Commerce</div>
+        <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
+          <span style={{ padding: "3px 10px", background: "rgba(14,165,233,0.1)", border: "1px solid rgba(14,165,233,0.25)", borderRadius: 20, fontSize: 11, color: "var(--cyan)", fontWeight: 600 }}>Pro Plan</span>
+          <span style={{ padding: "3px 10px", background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.25)", borderRadius: 20, fontSize: 11, color: "var(--green)", fontWeight: 600 }}>Verified</span>
+        </div>
+      </div>
+
+      <div className="settings-card">
+        <div className="settings-card-title">Personal Information</div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Full Name</div>
+            <div className="settings-row-desc">Your display name across the platform</div>
+          </div>
+          <input className="settings-input" value={name} onChange={e => setName(e.target.value)} />
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Email Address</div>
+            <div className="settings-row-desc">Used for login and notifications</div>
+          </div>
+          <input className="settings-input" value={email} onChange={e => setEmail(e.target.value)} />
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Phone Number</div>
+            <div className="settings-row-desc">For 2FA and account recovery</div>
+          </div>
+          <input className="settings-input" value={phone} onChange={e => setPhone(e.target.value)} />
+        </div>
+        <button className="save-btn" onClick={handleSave}>{saved ? "Saved!" : "Save Changes"}</button>
+      </div>
+
+      <div className="settings-card">
+        <div className="settings-card-title">Account Actions</div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Change Password</div>
+            <div className="settings-row-desc">Update your account password</div>
+          </div>
+          <button className="save-btn" style={{ margin: 0, padding: "7px 14px", fontSize: 11 }}>Change</button>
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Two-Factor Authentication</div>
+            <div className="settings-row-desc">Secure your account with 2FA</div>
+          </div>
+          <Toggle on={true} onToggle={() => {}} />
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label" style={{ color: "#ef4444" }}>Delete Account</div>
+            <div className="settings-row-desc">Permanently remove your account and data</div>
+          </div>
+          <button className="danger-btn">Delete</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PrivacyPage({ consents, setConsents }) {
+  return (
+    <div className="sidebar-page">
+      <div className="sidebar-page-title">Privacy & Consent</div>
+      <div className="sidebar-page-sub">Control how your data is collected, stored, and used</div>
+
+      <div className="settings-card">
+        <div className="settings-card-title">Data & Messaging Consent</div>
+        {[
+          { id: "whatsapp", label: "WhatsApp Messages", desc: "Allow promotional & transactional WhatsApp messages" },
+          { id: "sms", label: "SMS Notifications", desc: "Receive order updates and alerts via SMS" },
+          { id: "email", label: "Email Marketing", desc: "Receive newsletters and offers via email" },
+          { id: "profiling", label: "Behaviour Profiling", desc: "Allow AI-driven personalisation using your activity" },
+        ].map(({ id, label, desc }) => (
+          <div className="settings-row" key={id}>
+            <div className="settings-row-info">
+              <div className="settings-row-label">{label}</div>
+              <div className="settings-row-desc">{desc}</div>
+            </div>
+            <Toggle on={consents[id]} onToggle={() => setConsents(prev => ({ ...prev, [id]: !prev[id] }))} />
+          </div>
+        ))}
+      </div>
+
+      <div className="settings-card">
+        <div className="settings-card-title">Data Retention</div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Conversation History</div>
+            <div className="settings-row-desc">How long chat data is stored</div>
+          </div>
+          <select className="settings-select">
+            <option>90 days</option>
+            <option>180 days</option>
+            <option>1 year</option>
+            <option>Forever</option>
+          </select>
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Analytics Data</div>
+            <div className="settings-row-desc">Retention period for usage analytics</div>
+          </div>
+          <select className="settings-select">
+            <option>30 days</option>
+            <option>90 days</option>
+            <option>1 year</option>
+          </select>
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Export My Data</div>
+            <div className="settings-row-desc">Download all your data as a JSON file</div>
+          </div>
+          <button className="save-btn" style={{ margin: 0, padding: "7px 14px", fontSize: 11 }}>Export</button>
+        </div>
+      </div>
+
+      <div className="settings-card">
+        <div className="settings-card-title">Compliance</div>
+        <div style={{ fontSize: 12, color: "var(--text-mid)", lineHeight: 1.7, padding: "4px 0" }}>
+          All data is handled per <strong>DPDP Act 2023</strong> and <strong>GDPR</strong>. Users can revoke consent at any time. Data is encrypted at rest and in transit using AES-256 and TLS 1.3.
+        </div>
+        <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
+          {["GDPR Compliant", "DPDP Act 2023", "ISO 27001", "SOC 2 Type II"].map(b => (
+            <span key={b} style={{ padding: "3px 10px", background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 20, fontSize: 10, color: "var(--green)", fontWeight: 600 }}>{b}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SettingsPage() {
+  const [notifSound, setNotifSound] = useState(true);
+  const [autoReply, setAutoReply] = useState(true);
+  const [aiAssist, setAiAssist] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  return (
+    <div className="sidebar-page">
+      <div className="sidebar-page-title">Settings</div>
+      <div className="sidebar-page-sub">Configure your workspace preferences and integrations</div>
+
+      <div className="settings-card">
+        <div className="settings-card-title">General Preferences</div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Language</div>
+            <div className="settings-row-desc">Interface display language</div>
+          </div>
+          <select className="settings-select">
+            <option>English (India)</option>
+            <option>Hindi</option>
+            <option>Tamil</option>
+            <option>Telugu</option>
+          </select>
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Timezone</div>
+            <div className="settings-row-desc">Used for scheduling and analytics</div>
+          </div>
+          <select className="settings-select">
+            <option>IST (UTC+5:30)</option>
+            <option>UTC</option>
+            <option>PST (UTC-8)</option>
+          </select>
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Dark Mode</div>
+            <div className="settings-row-desc">Toggle dark/light theme</div>
+          </div>
+          <Toggle on={darkMode} onToggle={() => setDarkMode(p => !p)} />
+        </div>
+      </div>
+
+      <div className="settings-card">
+        <div className="settings-card-title">Notifications</div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Sound Alerts</div>
+            <div className="settings-row-desc">Play a sound for new messages</div>
+          </div>
+          <Toggle on={notifSound} onToggle={() => setNotifSound(p => !p)} />
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Desktop Notifications</div>
+            <div className="settings-row-desc">Show browser push notifications</div>
+          </div>
+          <Toggle on={true} onToggle={() => {}} />
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Email Summaries</div>
+            <div className="settings-row-desc">Daily digest of activity</div>
+          </div>
+          <Toggle on={false} onToggle={() => {}} />
+        </div>
+      </div>
+
+      <div className="settings-card">
+        <div className="settings-card-title">AI & Automation</div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">AI Message Assist</div>
+            <div className="settings-row-desc">Show AI-generated reply suggestions</div>
+          </div>
+          <Toggle on={aiAssist} onToggle={() => setAiAssist(p => !p)} />
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">Auto-Reply</div>
+            <div className="settings-row-desc">Enable automatic responses outside business hours</div>
+          </div>
+          <Toggle on={autoReply} onToggle={() => setAutoReply(p => !p)} />
+        </div>
+        <div className="settings-row">
+          <div className="settings-row-info">
+            <div className="settings-row-label">AI Confidence Threshold</div>
+            <div className="settings-row-desc">Minimum score to show AI suggestions</div>
+          </div>
+          <select className="settings-select">
+            <option>50%</option>
+            <option>60%</option>
+            <option>70%</option>
+            <option>80%</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="settings-card">
+        <div className="settings-card-title">Integrations</div>
+        {[
+          { name: "WhatsApp Business API", status: "Connected", color: "#10b981" },
+          { name: "Instagram DM", status: "Connected", color: "#10b981" },
+          { name: "Shopify", status: "Connected", color: "#10b981" },
+          { name: "Razorpay", status: "Not Connected", color: "#f97316" },
+        ].map(({ name, status, color }) => (
+          <div className="settings-row" key={name}>
+            <div className="settings-row-info">
+              <div className="settings-row-label">{name}</div>
+              <div className="settings-row-desc" style={{ color }}>{status}</div>
+            </div>
+            <button className="save-btn" style={{ margin: 0, padding: "6px 12px", fontSize: 11 }}>
+              {status === "Connected" ? "Manage" : "Connect"}
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <button className="save-btn" onClick={() => { setSaved(true); setTimeout(() => setSaved(false), 2000); }}>
+        {saved ? "Settings Saved!" : "Save All Settings"}
+      </button>
     </div>
   );
 }
@@ -1040,7 +1416,7 @@ export default function App() {
     setTyping(true);
     setTimeout(() => {
       setTyping(false);
-      const reply = { id: Date.now() + 1, role: "user", text: "Got it, thanks! Let me check that out 🙏", time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) };
+      const reply = { id: Date.now() + 1, role: "user", text: "Got it, thanks! Let me check that out.", time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) };
       setMessages(prev => ({ ...prev, [activeConv]: [...(prev[activeConv] || []), reply] }));
     }, 2000);
   };
@@ -1069,6 +1445,17 @@ export default function App() {
     return true;
   });
 
+  const sidebarItems = [
+    { id: "chat",      Icon: IconChat,      label: "Chat",     badge: true },
+    { id: "analytics", Icon: IconAnalytics, label: "Analytics" },
+    { id: "campaigns", Icon: IconCampaigns, label: "Campaigns" },
+    { id: "profile",   Icon: IconProfile,   label: "Profile" },
+    { id: "privacy",   Icon: IconPrivacy,   label: "Privacy" },
+    { id: "settings",  Icon: IconSettings,  label: "Settings" },
+  ];
+
+  const isFullPage = ["profile", "privacy", "settings"].includes(sidebarTab);
+
   return (
     <>
       <style>{FONTS + CSS}</style>
@@ -1082,14 +1469,14 @@ export default function App() {
           <div className="topnav-right">
             <div className="live-badge"><div className="live-dot" /><span>LIVE</span></div>
             <button className="broadcast-btn" onClick={() => setShowBroadcast(true)}>
-              📡 Broadcast
+              Broadcast
             </button>
-            <div className="icon-btn" title="Notifications">🔔</div>
+            <div className="icon-btn" title="Notifications" style={{ fontSize: 16 }}>🔔</div>
             <div style={{
               width: 32, height: 32, borderRadius: "50%",
               background: "linear-gradient(135deg, var(--cyan), var(--purple))",
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 12, fontWeight: 700, color: "#080c14"
+              fontSize: 12, fontWeight: 700, color: "#fff"
             }}>N</div>
           </div>
         </div>
@@ -1097,439 +1484,327 @@ export default function App() {
         <div className="app">
           {/* SIDEBAR */}
           <div className="sidebar">
-            {[
-              { id: "chat", label: "Inbox", badge: true },
-              { id: "analytics", label: "Analytics" },
-              { id: "campaigns", label: "Campaigns" },
-              { id: "privacy", label: "Privacy" },
-              { id: "settings", label: "Settings" },
-            ].map(({ id, label, badge }) => (
+            {sidebarItems.map(({ id, Icon, label, badge }) => (
               <button
                 key={id}
                 className={`sidebar-btn ${sidebarTab === id ? "active" : ""}`}
                 onClick={() => setSidebarTab(id)}
+                title={label}
               >
-                <span className="sidebar-btn-label">{label}</span>
+                <Icon />
+                <span>{label}</span>
                 {badge && <div className="sidebar-badge" />}
               </button>
             ))}
           </div>
 
           {/* MAIN */}
-          {sidebarTab === "chat" && (
-            <div className="main">
-              {/* LEFT: CONVERSATIONS */}
-              <div className="left-panel">
-                <div className="panel-header">
-                  <div className="panel-title">Inbox</div>
-                  <div className="search-bar">
-                    <span style={{ color: "var(--text-dim)", fontSize: 13 }}>🔍</span>
-                    <input placeholder="Search conversations..." />
-                  </div>
-                </div>
-                <div className="filter-tabs">
-                  {["All", "Unread", "WhatsApp", "Instagram", "SMS"].map(f => (
-                    <button key={f} className={`filter-tab ${filter === f ? "active" : ""}`} onClick={() => setFilter(f)}>{f}</button>
-                  ))}
-                </div>
-                <div className="conversation-list">
-                  {filtered.map(c => (
-                    <div
-                      key={c.id}
-                      className={`conv-item ${activeConv === c.id ? "active" : ""}`}
-                      onClick={() => setActiveConv(c.id)}
-                    >
-                      <div className="conv-item-top">
-                        <div className="conv-avatar" style={{ background: c.bg, color: c.color }}>{c.initials}</div>
-                        <div className="conv-info">
-                          <div className="conv-name">{c.name}</div>
-                        </div>
-                        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 3 }}>
-                          <div className="conv-time">{c.time}</div>
-                          {c.unread && <div className="unread-dot" />}
-                        </div>
-                      </div>
-                      <div className="conv-preview">{c.preview}</div>
-                      <div className="conv-meta">
-                        <div className="platform-badge" style={{ background: c.platformBg, color: c.platformColor }}>
-                          {c.platformIcon} {c.platform}
-                        </div>
-                        <div className="score-badge">AI {c.score}%</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+          <div className="main">
 
-              {/* CENTER: CHAT */}
-              <div className="center-panel">
-                <div className="chat-header">
-                  <div className="chat-header-avatar" style={{ background: conv.bg, color: conv.color }}>
-                    {conv.initials}
-                  </div>
-                  <div className="chat-header-info">
-                    <div className="chat-header-name">{conv.name}</div>
-                    <div className="chat-header-sub">
-                      <div className="online-dot" />
-                      Active now &nbsp;·&nbsp;
-                      <span className="platform-badge" style={{ background: conv.platformBg, color: conv.platformColor, padding: "1px 5px" }}>
-                        {conv.platformIcon} {conv.platform}
-                      </span>
-                      &nbsp;·&nbsp;
-                      <span style={{ color: "var(--cyan)" }}>Intent: {conv.intent}%</span>
+            {/* FULL-PAGE SIDEBAR VIEWS */}
+            {sidebarTab === "profile" && <ProfilePage />}
+            {sidebarTab === "privacy" && <PrivacyPage consents={consents} setConsents={setConsents} />}
+            {sidebarTab === "settings" && <SettingsPage />}
+
+            {/* CHAT VIEW */}
+            {!isFullPage && (
+              <>
+                {/* LEFT: CONVERSATIONS */}
+                <div className="left-panel">
+                  <div className="panel-header">
+                    <div className="panel-title">Inbox</div>
+                    <div className="search-bar">
+                      <span style={{ color: "var(--text-dim)", fontSize: 13 }}>🔍</span>
+                      <input placeholder="Search conversations..." />
                     </div>
                   </div>
-                  <div className="header-actions">
-                    <div className="icon-btn">📞</div>
-                    <div className="icon-btn">🔍</div>
-                    <div className="icon-btn">⋯</div>
-                  </div>
-                </div>
-
-                <div className="messages-area">
-                  <div style={{
-                    textAlign: "center", fontSize: 10, color: "var(--text-dim)",
-                    padding: "4px 12px", background: "var(--surface2)",
-                    border: "1px solid var(--border)", borderRadius: 20,
-                    width: "fit-content", margin: "0 auto"
-                  }}>Today</div>
-
-                  {currentMessages.map(msg => (
-                    <div key={msg.id} className={`msg-row ${msg.role}`}>
-                      <div className="msg-avatar" style={{
-                        background: msg.role === "user" ? conv.bg : "rgba(37,99,235,0.08)",
-                        color: msg.role === "user" ? conv.color : "var(--cyan)",
-                      }}>
-                        {msg.role === "user" ? conv.initials : "AI"}
-                      </div>
-                      <div className="msg-bubble-wrap">
-                        {msg.ai && <div className="ai-tag">AI Generated</div>}
-                        <div className="msg-bubble">{msg.text}</div>
-                        <div className="msg-time">{msg.time}</div>
-                      </div>
-                    </div>
-                  ))}
-
-                  {typing && (
-                    <div className="msg-row user">
-                      <div className="msg-avatar" style={{ background: conv.bg, color: conv.color }}>{conv.initials}</div>
-                      <div className="typing-indicator">
-                        <div className="typing-dot" /><div className="typing-dot" /><div className="typing-dot" />
-                      </div>
-                    </div>
-                  )}
-                  <div ref={messagesEndRef} />
-                </div>
-
-                <div className="ai-suggestion-bar">
-                  <div className="ai-suggestion-label">AI Suggestions</div>
-                  <div className="ai-pill-row">
-                    {suggestions.map((s, i) => (
-                      <div key={i} className="ai-pill" onClick={() => useSuggestion(s)}>{s}</div>
+                  <div className="filter-tabs">
+                    {["All", "Unread", "WhatsApp", "Instagram", "SMS"].map(f => (
+                      <button key={f} className={`filter-tab ${filter === f ? "active" : ""}`} onClick={() => setFilter(f)}>{f}</button>
                     ))}
                   </div>
-                </div>
-
-                <div className="input-bar">
-                  <div className="input-wrap">
-                    <textarea
-                      placeholder={`Reply to ${conv.name.split(" ")[0]}...`}
-                      value={inputVal}
-                      onChange={e => setInputVal(e.target.value)}
-                      onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(inputVal); } }}
-                      rows={1}
-                    />
-                    <span style={{ color: "var(--text-dim)", fontSize: 16, cursor: "pointer" }} title="Emoji">😊</span>
-                    <span style={{ color: "var(--text-dim)", fontSize: 16, cursor: "pointer" }} title="Attachment">📎</span>
-                  </div>
-                  <button className="send-btn" onClick={() => sendMessage(inputVal)}>↑</button>
-                </div>
-              </div>
-
-              {/* RIGHT PANEL */}
-              <div className="right-panel">
-                {/* USER PROFILE */}
-                <div className="right-section">
-                  <div className="right-section-title">Customer Profile</div>
-                  <div className="user-profile-card">
-                    <div className="profile-top">
-                      <div className="profile-avatar" style={{ background: conv.bg, color: conv.color, fontSize: 18 }}>
-                        {conv.initials}
-                      </div>
-                      <div>
-                        <div className="profile-name">{conv.name}</div>
-                        <div className="profile-tier" style={{ background: conv.tierBg, color: conv.tierColor }}>
-                          ★ {conv.tier}
+                  <div className="conversation-list">
+                    {filtered.map(c => (
+                      <div
+                        key={c.id}
+                        className={`conv-item ${activeConv === c.id ? "active" : ""}`}
+                        onClick={() => setActiveConv(c.id)}
+                      >
+                        <div className="conv-item-top">
+                          <div className="conv-avatar" style={{ background: c.bg, color: c.color }}>{c.initials}</div>
+                          <div className="conv-info">
+                            <div className="conv-name">{c.name}</div>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 3 }}>
+                            <div className="conv-time">{c.time}</div>
+                            {c.unread && <div className="unread-dot" />}
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="profile-stats">
-                      <div className="stat-box">
-                        <div className="stat-val" style={{ color: "var(--cyan)" }}>{conv.ltv}</div>
-                        <div className="stat-label">Lifetime Value</div>
-                      </div>
-                      <div className="stat-box">
-                        <div className="stat-val" style={{ color: "var(--green)" }}>{conv.orders}</div>
-                        <div className="stat-label">Orders</div>
-                      </div>
-                    </div>
-                    <div className="intent-bar">
-                      <div className="intent-label">
-                        <span style={{ fontSize: 10, color: "var(--text-dim)" }}>{conv.intentLabel}</span>
-                        <span>{conv.intent}%</span>
-                      </div>
-                      <div className="intent-track">
-                        <div className="intent-fill" style={{
-                          width: `${conv.intent}%`,
-                          background: conv.intent > 75 ? "var(--green)" : conv.intent > 50 ? "var(--cyan)" : "var(--orange)"
-                        }} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* BEHAVIOR SIGNALS */}
-                <div className="right-section">
-                  <div className="right-section-title">Behaviour Signals</div>
-                  <div className="signal-list">
-                    {signals.map((s, i) => (
-                      <div className="signal-item" key={i}>
-                        <div className="signal-icon">{s.icon}</div>
-                        <div className="signal-text">{s.text}</div>
-                        {s.time && <div className="signal-time">{s.time}</div>}
+                        <div className="conv-preview">{c.preview}</div>
+                        <div className="conv-meta">
+                          <div className="platform-badge" style={{ background: c.platformBg, color: c.platformColor }}>
+                            {c.platformIcon} {c.platform}
+                          </div>
+                          <div className="score-badge">AI {c.score}%</div>
+                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* MESSAGE STUDIO */}
-                <div className="right-section">
-                  <div className="right-section-title">AI Message Studio</div>
-                  <div className="studio-panel">
-                    <div className="studio-context">
-                      <select className="ctx-select" value={genTrigger} onChange={e => setGenTrigger(e.target.value)}>
-                        {Object.keys(GENERATED_MESSAGES).map(k => <option key={k}>{k}</option>)}
-                      </select>
+                {/* CENTER: CHAT */}
+                <div className="center-panel">
+                  <div className="chat-header">
+                    <div className="chat-header-avatar" style={{ background: conv.bg, color: conv.color }}>
+                      {conv.initials}
                     </div>
-                    <button className="generate-btn" onClick={generateMessage} disabled={generating}>
-                      {generating ? <><span className="spinning">⟳</span> Generating…</> : <>Generate Personalised Message</>}
-                    </button>
-                    {generatedMsg && (
-                      <>
-                        <div className="generated-msg">{generatedMsg}</div>
-                        <button className="use-msg-btn" onClick={() => { setInputVal(generatedMsg); setGeneratedMsg(null); }}>
-                          ↑ Use in Chat
-                        </button>
-                      </>
+                    <div className="chat-header-info">
+                      <div className="chat-header-name">{conv.name}</div>
+                      <div className="chat-header-sub">
+                        <div className="online-dot" />
+                        Active now &nbsp;·&nbsp;
+                        <span className="platform-badge" style={{ background: conv.platformBg, color: conv.platformColor, padding: "1px 5px" }}>
+                          {conv.platformIcon} {conv.platform}
+                        </span>
+                        &nbsp;·&nbsp;
+                        <span style={{ color: "var(--cyan)" }}>Intent: {conv.intent}%</span>
+                      </div>
+                    </div>
+                    <div className="header-actions">
+                      <div className="icon-btn">📞</div>
+                      <div className="icon-btn">🔍</div>
+                      <div className="icon-btn">⋯</div>
+                    </div>
+                  </div>
+
+                  <div className="messages-area">
+                    <div style={{
+                      textAlign: "center", fontSize: 10, color: "var(--text-dim)",
+                      padding: "4px 12px", background: "var(--surface)",
+                      border: "1px solid var(--border)", borderRadius: 20,
+                      width: "fit-content", margin: "0 auto",
+                      boxShadow: "0 1px 3px rgba(0,0,0,0.04)"
+                    }}>Today</div>
+
+                    {currentMessages.map(msg => (
+                      <div key={msg.id} className={`msg-row ${msg.role}`}>
+                        <div className="msg-avatar" style={{
+                          background: msg.role === "user" ? conv.bg : "rgba(14,165,233,0.12)",
+                          color: msg.role === "user" ? conv.color : "var(--cyan)",
+                        }}>
+                          {msg.role === "user" ? conv.initials : "AI"}
+                        </div>
+                        <div className="msg-bubble-wrap">
+                          {msg.ai && <div className="ai-tag">✦ AI Generated</div>}
+                          <div className="msg-bubble">{msg.text}</div>
+                          <div className="msg-time">{msg.time}</div>
+                        </div>
+                      </div>
+                    ))}
+
+                    {typing && (
+                      <div className="msg-row user">
+                        <div className="msg-avatar" style={{ background: conv.bg, color: conv.color }}>{conv.initials}</div>
+                        <div className="typing-indicator">
+                          <div className="typing-dot" /><div className="typing-dot" /><div className="typing-dot" />
+                        </div>
+                      </div>
                     )}
+                    <div ref={messagesEndRef} />
+                  </div>
+
+                  <div className="ai-suggestion-bar">
+                    <div className="ai-suggestion-label">✦ AI Suggestions</div>
+                    <div className="ai-pill-row">
+                      {suggestions.map((s, i) => (
+                        <div key={i} className="ai-pill" onClick={() => useSuggestion(s)}>{s}</div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="input-bar">
+                    <div className="input-wrap">
+                      <textarea
+                        placeholder={`Reply to ${conv.name.split(" ")[0]}...`}
+                        value={inputVal}
+                        onChange={e => setInputVal(e.target.value)}
+                        onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(inputVal); } }}
+                        rows={1}
+                      />
+                      <span style={{ color: "var(--text-dim)", fontSize: 12, cursor: "pointer", fontWeight: 500 }} title="Attach">Attach</span>
+                    </div>
+                    <button className="send-btn" onClick={() => sendMessage(inputVal)}>↑</button>
                   </div>
                 </div>
 
-                {/* ANALYTICS */}
-                <div className="right-section">
-                  <div className="right-section-title">Today's Metrics</div>
-                  <div className="analytics-grid">
-                    {[
-                      { label: "Messages Sent", val: "1,284", delta: "+12%", color: "var(--cyan)" },
-                      { label: "Open Rate", val: "74%", delta: "+3%", color: "var(--green)" },
-                      { label: "Conversions", val: "68", delta: "+22%", color: "var(--orange)" },
-                      { label: "Avg. Response", val: "18s", delta: "−4s", color: "var(--purple)" },
-                    ].map(({ label, val, delta, color }) => (
-                      <div className="analytics-card" key={label}>
-                        <div className="analytics-val" style={{ color }}>{val}</div>
-                        <div className="analytics-label">{label}</div>
-                        <div className="analytics-delta" style={{ color: delta.startsWith("+") ? "var(--green)" : "var(--orange)" }}>{delta}</div>
+                {/* RIGHT PANEL */}
+                <div className="right-panel">
+                  {/* USER PROFILE */}
+                  <div className="right-section">
+                    <div className="right-section-title">Customer Profile</div>
+                    <div className="user-profile-card">
+                      <div className="profile-top">
+                        <div className="profile-avatar" style={{ background: conv.bg, color: conv.color, fontSize: 18 }}>
+                          {conv.initials}
+                        </div>
+                        <div>
+                          <div className="profile-name">{conv.name}</div>
+                          <div className="profile-tier" style={{ background: conv.tierBg, color: conv.tierColor }}>
+                            ★ {conv.tier}
+                          </div>
+                        </div>
                       </div>
-                    ))}
+                      <div className="profile-stats">
+                        <div className="stat-box">
+                          <div className="stat-val" style={{ color: "var(--cyan)" }}>{conv.ltv}</div>
+                          <div className="stat-label">Lifetime Value</div>
+                        </div>
+                        <div className="stat-box">
+                          <div className="stat-val" style={{ color: "var(--green)" }}>{conv.orders}</div>
+                          <div className="stat-label">Orders</div>
+                        </div>
+                      </div>
+                      <div className="intent-bar">
+                        <div className="intent-label">
+                          <span style={{ fontSize: 10, color: "var(--text-dim)" }}>{conv.intentLabel}</span>
+                          <span>{conv.intent}%</span>
+                        </div>
+                        <div className="intent-track">
+                          <div className="intent-fill" style={{
+                            width: `${conv.intent}%`,
+                            background: conv.intent > 75 ? "var(--green)" : conv.intent > 50 ? "var(--cyan)" : "var(--orange)"
+                          }} />
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
+                  {/* BEHAVIOR SIGNALS */}
+                  <div className="right-section">
+                    <div className="right-section-title">Behaviour Signals</div>
+                    <div className="signal-list">
+                      {signals.map((s, i) => (
+                        <div className="signal-item" key={i}>
+                          <div className="signal-icon">{s.icon}</div>
+                          <div className="signal-text">{s.text}</div>
+                          {s.time && <div className="signal-time">{s.time}</div>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* MESSAGE STUDIO */}
+                  <div className="right-section">
+                    <div className="right-section-title">✦ AI Message Studio</div>
+                    <div className="studio-panel">
+                      <div className="studio-context">
+                        <select className="ctx-select" value={genTrigger} onChange={e => setGenTrigger(e.target.value)}>
+                          {Object.keys(GENERATED_MESSAGES).map(k => <option key={k}>{k}</option>)}
+                        </select>
+                      </div>
+                      <button className="generate-btn" onClick={generateMessage} disabled={generating}>
+                        {generating ? <><span className="spinning">⟳</span> Generating…</> : <>✦ Generate Personalised Message</>}
+                      </button>
+                      {generatedMsg && (
+                        <>
+                          <div className="generated-msg">{generatedMsg}</div>
+                          <button className="use-msg-btn" onClick={() => { setInputVal(generatedMsg); setGeneratedMsg(null); }}>
+                            ↑ Use in Chat
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* ANALYTICS */}
+                  <div className="right-section">
+                    <div className="right-section-title">Today's Metrics</div>
+                    <div className="analytics-grid">
+                      {[
+                        { label: "Messages Sent", val: "1,284", delta: "+12%", color: "var(--cyan)" },
+                        { label: "Open Rate", val: "74%", delta: "+3%", color: "var(--green)" },
+                        { label: "Conversions", val: "68", delta: "+22%", color: "var(--orange)" },
+                        { label: "Avg. Response", val: "18s", delta: "−4s", color: "var(--purple)" },
+                      ].map(({ label, val, delta, color }) => (
+                        <div className="analytics-card" key={label}>
+                          <div className="analytics-val" style={{ color }}>{val}</div>
+                          <div className="analytics-label">{label}</div>
+                          <div className="analytics-delta" style={{ color: delta.startsWith("+") ? "var(--green)" : "var(--orange)" }}>{delta}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <SparkLine color="var(--cyan)" />
+                  </div>
+
+                  {/* CONSENT */}
+                  <div className="right-section">
+                    <div className="right-section-title">Consent & Privacy</div>
+                    <div className="consent-toggles">
+                      {[
+                        { id: "whatsapp", label: "WhatsApp Messages", desc: "Promotional & transactional" },
+                        { id: "sms", label: "SMS Notifications", desc: "Order updates & alerts" },
+                        { id: "email", label: "Email Marketing", desc: "Newsletter & offers" },
+                        { id: "profiling", label: "Behaviour Profiling", desc: "Personalisation engine" },
+                      ].map(({ id, label, desc }) => (
+                        <div className="consent-row" key={id}>
+                          <div className="consent-info">
+                            <div className="consent-name">{label}</div>
+                            <div className="consent-desc">{desc}</div>
+                          </div>
+                          <Toggle on={consents[id]} onToggle={() => setConsents(prev => ({ ...prev, [id]: !prev[id] }))} />
+                        </div>
+                      ))}
+                    </div>
+                    <div style={{ marginTop: 8, fontSize: 10, color: "var(--text-dim)", lineHeight: 1.5 }}>
+                      All data handled per DPDP Act 2023 & GDPR. User can revoke at any time.
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* ANALYTICS & CAMPAIGNS placeholder views */}
+            {sidebarTab === "analytics" && (
+              <div className="sidebar-page">
+                <div className="sidebar-page-title">Analytics</div>
+                <div className="sidebar-page-sub">Platform-wide performance metrics and insights</div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 24 }}>
+                  {[
+                    { label: "Total Messages", val: "48,291", delta: "+18%", color: "var(--cyan)" },
+                    { label: "Avg. Open Rate", val: "74%", delta: "+3%", color: "var(--green)" },
+                    { label: "Total Conversions", val: "2,140", delta: "+22%", color: "var(--orange)" },
+                    { label: "Avg. Response", val: "18s", delta: "−4s", color: "var(--purple)" },
+                  ].map(({ label, val, delta, color }) => (
+                    <div className="settings-card" key={label} style={{ textAlign: "center", marginBottom: 0 }}>
+                      <div style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 800, color }}>{val}</div>
+                      <div style={{ fontSize: 11, color: "var(--text-dim)", textTransform: "uppercase", letterSpacing: "0.05em", marginTop: 4 }}>{label}</div>
+                      <div style={{ fontSize: 12, fontWeight: 600, marginTop: 4, color: delta.startsWith("+") ? "var(--green)" : "var(--orange)" }}>{delta}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="settings-card">
+                  <div className="settings-card-title">Message Volume — Last 10 Days</div>
                   <SparkLine color="var(--cyan)" />
                 </div>
-
-                {/* CONSENT */}
-                <div className="right-section">
-                  <div className="right-section-title">Consent & Privacy</div>
-                  <div className="consent-toggles">
-                    {[
-                      { id: "whatsapp", label: "WhatsApp Messages", desc: "Promotional & transactional" },
-                      { id: "sms", label: "SMS Notifications", desc: "Order updates & alerts" },
-                      { id: "email", label: "Email Marketing", desc: "Newsletter & offers" },
-                      { id: "profiling", label: "Behaviour Profiling", desc: "Personalisation engine" },
-                    ].map(({ id, label, desc }) => (
-                      <div className="consent-row" key={id}>
-                        <div className="consent-info">
-                          <div className="consent-name">{label}</div>
-                          <div className="consent-desc">{desc}</div>
-                        </div>
-                        <Toggle on={consents[id]} onToggle={() => setConsents(prev => ({ ...prev, [id]: !prev[id] }))} />
-                      </div>
-                    ))}
-                  </div>
-                  <div style={{ marginTop: 8, fontSize: 10, color: "var(--text-dim)", lineHeight: 1.5 }}>
-                    All data handled per DPDP Act 2023 & GDPR. User can revoke at any time.
-                  </div>
-                </div>
               </div>
-            </div>
-          )}
-
-          {sidebarTab === "analytics" && (
-            <div className="main" style={{ padding: 20 }}>
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: 24, marginBottom: 20 }}>Analytics Dashboard</h2>
-              <div className="analytics-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 20 }}>
-                {[
-                  { label: "Total Messages", val: "12,847", delta: "+8%", color: "var(--cyan)" },
-                  { label: "Active Conversations", val: "234", delta: "+15%", color: "var(--green)" },
-                  { label: "Conversion Rate", val: "24%", delta: "+5%", color: "var(--orange)" },
-                  { label: "Avg Response Time", val: "12s", delta: "-2s", color: "var(--purple)" },
-                  { label: "Customer Satisfaction", val: "4.8/5", delta: "+0.2", color: "var(--pink)" },
-                  { label: "Revenue Generated", val: "₹2.4M", delta: "+18%", color: "var(--green)" },
-                ].map(({ label, val, delta, color }) => (
-                  <div className="analytics-card" key={label} style={{ padding: 20 }}>
-                    <div className="analytics-val" style={{ color, fontSize: 28 }}>{val}</div>
-                    <div className="analytics-label">{label}</div>
-                    <div className="analytics-delta" style={{ color: delta.startsWith("+") ? "var(--green)" : "var(--orange)", fontSize: 12 }}>{delta}</div>
-                    <SparkLine color={color} />
+            )}
+            {sidebarTab === "campaigns" && (
+              <div className="sidebar-page">
+                <div className="sidebar-page-title">Campaigns</div>
+                <div className="sidebar-page-sub">Manage broadcast campaigns and automations</div>
+                <button className="save-btn" style={{ marginBottom: 20 }} onClick={() => setShowBroadcast(true)}>+ New Campaign</button>
+                {["Cart Recovery — Gold Members", "Flash Sale — All Users", "Re-engagement — Inactive 30d"].map((name, i) => (
+                  <div className="settings-card" key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+                    <div>
+                      <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text)" }}>{name}</div>
+                      <div style={{ fontSize: 11, color: "var(--text-dim)", marginTop: 3 }}>Sent {["2d ago", "5d ago", "1w ago"][i]} · {["2,140", "8,320", "1,980"][i]} reached</div>
+                    </div>
+                    <span style={{ padding: "3px 10px", background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.25)", borderRadius: 20, fontSize: 10, color: "var(--green)", fontWeight: 600 }}>Completed</span>
                   </div>
                 ))}
               </div>
-            </div>
-          )}
-
-          {sidebarTab === "campaigns" && (
-            <div className="main" style={{ padding: 20 }}>
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: 24, marginBottom: 20 }}>Campaign Management</h2>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-                <div className="studio-panel" style={{ padding: 20 }}>
-                  <h3 style={{ fontSize: 18, marginBottom: 16 }}>Active Campaigns</h3>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                    {[
-                      { name: "Cart Recovery", status: "Running", reach: "1,240", conv: "18%" },
-                      { name: "Loyalty Rewards", status: "Scheduled", reach: "850", conv: "22%" },
-                      { name: "Flash Sale", status: "Paused", reach: "2,100", conv: "12%" },
-                    ].map((camp, i) => (
-                      <div key={i} style={{ padding: 12, background: "var(--surface2)", borderRadius: "var(--radius-sm)", border: "1px solid var(--border)" }}>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                          <span style={{ fontWeight: 600 }}>{camp.name}</span>
-                          <span style={{ fontSize: 12, color: camp.status === "Running" ? "var(--green)" : camp.status === "Scheduled" ? "var(--orange)" : "var(--text-dim)" }}>{camp.status}</span>
-                        </div>
-                        <div style={{ fontSize: 12, color: "var(--text-dim)" }}>Reach: {camp.reach} | Conv: {camp.conv}</div>
-                      </div>
-                    ))}
-                  </div>
-                  <button className="generate-btn" style={{ marginTop: 16, width: "100%" }} onClick={() => setShowBroadcast(true)}>
-                    Create New Campaign
-                  </button>
-                </div>
-                <div className="studio-panel" style={{ padding: 20 }}>
-                  <h3 style={{ fontSize: 18, marginBottom: 16 }}>Campaign Templates</h3>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                    {Object.keys(GENERATED_MESSAGES).map((template, i) => (
-                      <div key={i} style={{ padding: 12, background: "var(--surface2)", borderRadius: "var(--radius-sm)", border: "1px solid var(--border)", cursor: "pointer" }} onClick={() => setGenTrigger(template)}>
-                        <div style={{ fontWeight: 600, marginBottom: 4 }}>{template}</div>
-                        <div style={{ fontSize: 12, color: "var(--text-dim)" }}>{GENERATED_MESSAGES[template].slice(0, 60)}...</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {sidebarTab === "privacy" && (
-            <div className="main" style={{ padding: 20 }}>
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: 24, marginBottom: 20 }}>Privacy & Consent Management</h2>
-              <div className="consent-toggles" style={{ maxWidth: 600 }}>
-                <div style={{ marginBottom: 20, padding: 20, background: "var(--surface)", borderRadius: "var(--radius)", border: "1px solid var(--border)" }}>
-                  <h3 style={{ fontSize: 18, marginBottom: 16 }}>Data Collection Consent</h3>
-                  <p style={{ color: "var(--text-dim)", marginBottom: 16 }}>Manage how we collect and use your customer data for personalization and messaging.</p>
-                  {[
-                    { id: "whatsapp", label: "WhatsApp Messages", desc: "Promotional & transactional messages via WhatsApp Business API" },
-                    { id: "sms", label: "SMS Notifications", desc: "Order updates, delivery alerts, and important notifications" },
-                    { id: "email", label: "Email Marketing", desc: "Newsletter, offers, and promotional emails" },
-                    { id: "profiling", label: "Behaviour Profiling", desc: "AI-powered personalization based on browsing and purchase history" },
-                    { id: "analytics", label: "Analytics Tracking", desc: "Website and app usage analytics for improving service" },
-                  ].map(({ id, label, desc }) => (
-                    <div className="consent-row" key={id} style={{ marginBottom: 12 }}>
-                      <div className="consent-info">
-                        <div className="consent-name">{label}</div>
-                        <div className="consent-desc">{desc}</div>
-                      </div>
-                      <Toggle on={consents[id] || false} onToggle={() => setConsents(prev => ({ ...prev, [id]: !prev[id] }))} />
-                    </div>
-                  ))}
-                </div>
-                <div style={{ padding: 20, background: "var(--surface)", borderRadius: "var(--radius)", border: "1px solid var(--border)" }}>
-                  <h3 style={{ fontSize: 18, marginBottom: 16 }}>Data Privacy Information</h3>
-                  <div style={{ fontSize: 14, color: "var(--text-dim)", lineHeight: 1.6 }}>
-                    <p><strong>Data Controller:</strong> NexaChat Technologies Pvt Ltd</p>
-                    <p><strong>Purpose:</strong> Customer communication and service personalization</p>
-                    <p><strong>Legal Basis:</strong> Consent and legitimate business interests</p>
-                    <p><strong>Retention:</strong> 7 years for business records, 2 years for marketing data</p>
-                    <p><strong>Rights:</strong> Access, rectify, erase, restrict processing, data portability</p>
-                    <p style={{ marginTop: 12 }}><strong>Contact DPO:</strong> privacy@nexachat.com | 📞 +91-9876543210</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {sidebarTab === "settings" && (
-            <div className="main" style={{ padding: 20 }}>
-              <h2 style={{ fontFamily: "var(--font-display)", fontSize: 24, marginBottom: 20 }}>Settings & Configuration</h2>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-                <div className="studio-panel" style={{ padding: 20 }}>
-                  <h3 style={{ fontSize: 18, marginBottom: 16 }}>AI Configuration</h3>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                    <div>
-                      <label style={{ display: "block", fontSize: 14, fontWeight: 600, marginBottom: 8 }}>Response Tone</label>
-                      <select className="ctx-select" style={{ width: "100%" }}>
-                        <option>Friendly & Professional</option>
-                        <option>Casual & Conversational</option>
-                        <option>Formal & Corporate</option>
-                        <option>Enthusiastic & Energetic</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label style={{ display: "block", fontSize: 14, fontWeight: 600, marginBottom: 8 }}>Auto-Reply Delay</label>
-                      <select className="ctx-select" style={{ width: "100%" }}>
-                        <option>Immediate (0-5s)</option>
-                        <option>Quick (5-15s)</option>
-                        <option>Normal (15-30s)</option>
-                        <option>Slow (30-60s)</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label style={{ display: "block", fontSize: 14, fontWeight: 600, marginBottom: 8 }}>Language</label>
-                      <select className="ctx-select" style={{ width: "100%" }}>
-                        <option>English</option>
-                        <option>Hindi</option>
-                        <option>Marathi</option>
-                        <option>Gujarati</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="studio-panel" style={{ padding: 20 }}>
-                  <h3 style={{ fontSize: 18, marginBottom: 16 }}>Business Information</h3>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                    <div>
-                      <label style={{ display: "block", fontSize: 14, fontWeight: 600, marginBottom: 8 }}>Business Name</label>
-                      <input type="text" className="ctx-select" style={{ width: "100%", padding: "8px 12px" }} defaultValue="NexaChat Demo Store" />
-                    </div>
-                    <div>
-                      <label style={{ display: "block", fontSize: 14, fontWeight: 600, marginBottom: 8 }}>Support Email</label>
-                      <input type="email" className="ctx-select" style={{ width: "100%", padding: "8px 12px" }} defaultValue="support@nexachat.com" />
-                    </div>
-                    <div>
-                      <label style={{ display: "block", fontSize: 14, fontWeight: 600, marginBottom: 8 }}>Support Phone</label>
-                      <input type="tel" className="ctx-select" style={{ width: "100%", padding: "8px 12px" }} defaultValue="+91-9876543210" />
-                    </div>
-                    <button className="generate-btn" style={{ marginTop: 8 }}>Save Changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </>
